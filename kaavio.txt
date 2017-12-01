@@ -1,0 +1,33 @@
+Daemon
+Daemon is a base program that ensures Service Center is up and running
+
+
+ServiceCenter
+
+Listener
+Listener listens for messages in its own thread.
+When a new message is received, it is sent to the message handler.
+If the connection is lost, send a error message and try connection again in a loop.
+
+Message handler
+Message handler starts a right runner for the task.
+
+Runners
+-speaker
+-system
+-sensor reading
+-actuator
+-others...
+
+Runner
+Runner has a queue for incoming tasks.
+Tasks are run in the order of incoming.
+
+Sender
+Sender sends messages via UDP connection.
+If there is an error, write to the log and try again.
+
+Pilot
+Pilot is an independent message source in its own thread.
+Pilot sends messages to the message handler based on the pilot configuration.
+Configuration can be like time based
